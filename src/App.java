@@ -17,13 +17,13 @@ public class App {
 //        System.out.println(e.somatorioDeKaJ(1,5));
 
         ArrayList<Integer> lista = new ArrayList<>();
-        lista.add(1);
-        lista.add(2);
-        lista.add(3);
-        lista.add(10);
-        lista.add(1);
-        lista.add(1);
-        System.out.println(e.somatorioNumerosDeArrayList(lista));
+        lista.add(100);
+//        lista.add(5);
+//        lista.add(4);
+//        lista.add(10);
+//        lista.add(1);
+//        lista.add(41);
+        System.out.println(e.findBiggest(lista));
 
     }
 }
