@@ -87,4 +87,53 @@ public class Exercicios {
         }
         return findBiggest0(ar, pos+1, ar.size(), biggest);
     }
+
+    /*
+    5 - Implemente um método recursivo que
+        recebe um String e retorna true se este
+        String for um palíndromo, false caso
+        contrário
+        Boolean isPal(String s)
+     */
+
+    public boolean isPal(String s){
+        return isPal0(s);
+    }
+
+    private boolean isPal0(String s){
+        if(s.length() == 1 || s.length() == 0){
+            return true;
+        }
+        char a = s.charAt(0);
+        char b = s.charAt(s.length()-1);
+        if(a == b){
+            return isPal0(s.substring(1, s.length()-1));
+        }
+        return false;
+    }
+
+    /*
+    6 - Implemente um método recursivo que
+        recebe um inteiro e retorna um String
+        com o número em binário
+        String convBase2(int n)
+        (NÃO CONCLUÍDO!)
+     */
+    public String convBase2(int n){
+        return convBase20(n, 0, "");
+    }
+
+    private String convBase20(int n, int restoDivisao, String binario) {
+        if(n == 1){
+            return binario;
+        }
+
+        restoDivisao = n%2;
+        n = n/2;
+        binario = restoDivisao + binario;
+
+        return convBase20(n, restoDivisao, binario);
+    }
+
+
 }

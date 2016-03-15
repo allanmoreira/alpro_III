@@ -6,24 +6,14 @@ import java.util.ArrayList;
 public class App {
     public static void main(String [] args){
         Exercicios e = new Exercicios();
-        /*
-        System.out.println(e.somatorio(1));
-        System.out.println(e.somatorio(2));
-        System.out.println(e.somatorio(3));
-        System.out.println(e.somatorio(4));
-        System.out.println(e.somatorio(5));
-        */
 
-//        System.out.println(e.somatorioDeKaJ(1,5));
-
-        ArrayList<Integer> lista = new ArrayList<>();
-        lista.add(100);
-//        lista.add(5);
-//        lista.add(4);
-//        lista.add(10);
-//        lista.add(1);
-//        lista.add(41);
-        System.out.println(e.findBiggest(lista));
+//        System.out.println(e.convBase2(1));
+//        System.out.println(e.convBase2(2));
+//        System.out.println(e.convBase2(3));
+//        System.out.println(e.convBase2(4));
+//        System.out.println(e.convBase2(5));
+//        System.out.println(e.convBase2(6));
+        System.out.println(e.convBase2(156));
 
     }
 }
