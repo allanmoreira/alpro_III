@@ -1,12 +1,10 @@
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by 12111151 on 3/9/16.
+ * Created by allan on 3/9/16.
  */
-public class Exercicios {
+public class Recursividade {
 
     /*
     1 - Implemente um método recursivo que

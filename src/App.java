@@ -1,19 +1,17 @@
-import java.util.ArrayList;
-
 /**
- * Created by 12111151 on 3/9/16.
+ * Created by allan on 3/9/16.
  */
 public class App {
     public static void main(String [] args){
-        Exercicios e = new Exercicios();
+        Matrizes m = new Matrizes();
+        // http://brasilescola.uol.com.br/matematica/multiplicacao-matrizes.htm
+        int matriz1 [][] = {{2,5,9}, {3,6,8}};
+        int matriz2 [][] = {{2,7},{4,3},{5,2}};
 
-//        System.out.println(e.convBase2(1));
-//        System.out.println(e.convBase2(2));
-//        System.out.println(e.convBase2(3));
-//        System.out.println(e.convBase2(4));
-//        System.out.println(e.convBase2(5));
-//        System.out.println(e.convBase2(6));
-        System.out.println(e.convBase2(156));
-
+        m.imprimeMatriz(matriz1);
+        System.out.println();
+        m.imprimeMatriz(matriz2);
+        System.out.println();
+        m.multiplicaMatrizes(matriz1, matriz2);
     }
 }
