@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by 12111151 on 3/9/16.
  */
-public class Exercicios {
+public class Recursao {
 
     /*
     1 - Implemente um método recursivo que
