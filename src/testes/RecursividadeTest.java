@@ -1,7 +1,7 @@
 package testes;
 
 
-import algoritmos.recursividade.Recursividade;
+import algoritmos.Recursividade;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

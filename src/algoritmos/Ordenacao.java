@@ -1,20 +1,21 @@
-package algoritmos.ordenacao;
+package algoritmos;
 
 /**
  * Created by 12111151 on 3/28/16.
  */
-public class BubbleSort {
+public class Ordenacao {
     private int [] v;
 
-    public BubbleSort(int[] v) {
+    public Ordenacao(int[] v) {
         this.v = v;
     }
 
-    public void ordena(){
+    public void bubbleSort(){
         for (int i = 0; i < v.length; i++) {
             for (int j = 0; j < v.length-1; j++) {
                 if(v[j] > v[j+1]){
                     troca(v, j, j+1);
+                    System.out.println(imprimeArray());
                 }
             }
         }
@@ -36,14 +37,6 @@ public class BubbleSort {
         }
         imp+= "}";
 
-        return imp;
-    }
-
-    public String imprimeArray2(){
-        String imp = null;
-        for (int i = 0; i < v.length; i++) {
-            imp+= v[i] + " ";
-        }
         return imp;
     }
 
