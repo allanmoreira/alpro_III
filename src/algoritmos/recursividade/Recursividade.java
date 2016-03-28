@@ -1,4 +1,4 @@
-package algoritmos;
+package algoritmos.recursividade;
 
 import java.util.ArrayList;
 
