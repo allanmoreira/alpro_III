@@ -1,3 +1,5 @@
+package algoritmos;
+
 /**
  * Created by allan on 16/03/16.
  */
@@ -17,7 +19,7 @@ public class Matrizes {
         for (int i = 0; i < matriz1.length; i++) {
             for (int j = 0; j < matriz2[i].length; j++) {
                 if(matriz1.length != matriz2[i].length){
-                    throw new IllegalArgumentException("Matrizes de tamanhos diferentes!");
+                    throw new IllegalArgumentException("algoritmos.Matrizes de tamanhos diferentes!");
                 }
                 // todo continar código
             }
