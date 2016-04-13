@@ -17,13 +17,13 @@ public class PesquisaTest {
     }
 
     @Test
-    public void testPesquisaSequencialEncontrou() throws Exception {
+    public void testPesquisaSequencialEncontrou()  {
         int [] v = {4,2,6,5,7,8,6,9,3,1};
         assertEquals(-1, Pesquisa.pesquisaSequencial(v, 10));
     }
 
     @Test
-    public void testPesquisaSequencialNaoEncontrou() throws Exception {
+    public void testPesquisaSequencialNaoEncontrou() {
         int [] v = {4,2,6,5,7,8,6,9,3,1};
         assertEquals(3, Pesquisa.pesquisaSequencial(v, 5));
     }
