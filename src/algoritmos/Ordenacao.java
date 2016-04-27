@@ -4,47 +4,57 @@ package algoritmos;
  * Created by 12111151 on 3/28/16.
  */
 public class Ordenacao {
-    private int [] v;
-    private int contLoop = 0;
 
-    public Ordenacao(int[] v) {
-        this.v = v;
-    }
-
-    public void bubbleSort(){
-        for (int i = 0; i < v.length; i++) {
-            contLoop++;
-            for (int j = 0; j < v.length-1; j++) {
-                contLoop++;
-                if(v[j] > v[j+1]){
-                    troca(v, j, j+1);
+    public static String bubbleSort(int[] v){
+        for (int i = 0; i < v.length-1; i++) {
+            for (int j = i+1; j < v.length; j++) {
+                if(v[j]<v[i]){
+                    troca(v, i, j);
                 }
             }
         }
+        return toString(v);
     }
 
-    public void bubbleSortOtimizado(){
-        boolean ordenadado = false;
-        while (ordenadado == false){
-            contLoop++;
-            ordenadado = true;
+    public static String bubbleSortOtimizado(int[] v){
+        boolean ordenado = false;
+
+        while(ordenado == false) {
+            ordenado = true;
             for (int i = 0; i < v.length-1; i++) {
-                contLoop++;
-                if(v[i] > v[i+1]){
+                System.out.println(i);
+                if(v[i]>v[i+1]){
+                    System.out.println("Trocou " + v[i] + " por " + v[i+1]);
                     troca(v, i, i+1);
-                    ordenadado = false;
+                    ordenado = false;
                 }
             }
         }
+        return toString(v);
     }
 
-    private void troca(int [] v, int i, int j) {
-        int n = v[j];
-        v[j] = v[i];
-        v[i] = n;
+    public static String insertionSort(int [] v) {
+        int i, chave;
+
+        for (int j = 1; j < v.length; j++) {
+            chave = v[j];
+            i = j-1;
+            while(i>=0 && v[i]>chave){
+                v[i+1] = v[i];
+                i = i-1;
+            }
+            v[i+1] = chave;
+        }
+        return toString(v);
     }
 
-    public String imprimeArray(){
+    private static void troca(int[] v, int i, int j) {
+        int a = v[i];
+        v[i] = v[j];
+        v[j] = a;
+    }
+
+    private static String toString(int[] v){
         String imp = "{";
         for (int i = 0; i < v.length; i++) {
             imp+= v[i];
@@ -54,30 +64,5 @@ public class Ordenacao {
         }
         imp+= "}";
         return imp;
-    }
-
-    public String getContLoop() {
-        int n = contLoop;
-        contLoop = 0;
-        return "Loop = " + n;
-    }
-
-    private void imprimeTroca(int i, int j){
-        System.out.print(imprimeArray());
-        System.out.println("       <--- Trocou " + i + " por " + j);
-    }
-
-    public void insertionSortSlide(){
-        int i, j, chave;
-        for (j=1; j<v.length; j++) {
-            chave = v[j];
-            i = j - 1;
-            while ((i >= 0) && (v[i] > chave)) {
-                imprimeTroca(v[i], v[i+1]);
-                v[i+1] = v[i];
-                i = i - 1;
-            }
-            v[i+1] = chave;
-        }
     }
 }

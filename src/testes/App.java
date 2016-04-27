@@ -2,20 +2,14 @@ package testes;
 
 import algoritmos.Ordenacao;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by 12111151 on 3/28/16.
  */
 public class App {
     public static void main(String[] args) {
-//        int [] v = new int [] {5, 2, 4, 6, 1, 3};
-//        int [] v = new int [] {1,2,3,4,5,6};
-        int [] v = new int [] {6,5,4,3,2,1};
-        Ordenacao bb = new Ordenacao(v);
 
-        System.out.print("Antes:  ");
-        System.out.println(bb.imprimeArray());
-        bb.insertionSortSlide();
-        System.out.println("Depois: ");
-        System.out.println(bb.imprimeArray());
     }
 }
