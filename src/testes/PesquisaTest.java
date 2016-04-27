@@ -30,7 +30,7 @@ public class PesquisaTest {
 
     @Test
     public void testBinarySearch() {
-        int [] v = {1,2,3,4,5,6,7,8,9};
-        assertEquals(3, Pesquisa.binarySearch(v, 4));
+        int [] v = {1,2,3,4,5,6,7,8,9,5};
+        assertEquals(8, Pesquisa.binarySearch(v, 9));
     }
 }
