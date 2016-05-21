@@ -3,7 +3,7 @@ package algoritmos;
 import java.util.ArrayList;
 
 /**
- * Created by allan on 3/9/16.
+ * Created by allanmoreira on 3/9/16.
  */
 public class Recursividade {
 

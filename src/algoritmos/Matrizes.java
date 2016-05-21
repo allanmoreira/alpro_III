@@ -1,7 +1,7 @@
 package algoritmos;
 
 /**
- * Created by allan on 16/03/16.
+ * Created by allanmoreira on 16/03/16.
  */
 public class Matrizes {
     /*

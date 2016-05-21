@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by 12111151 on 3/28/16.
+ * Created by allanmoreira on 3/28/16.
  */
 public class RecursividadeTest {
     private Recursividade r = new Recursividade();

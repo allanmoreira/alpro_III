@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by 12111151 on 4/4/16.
+ * Created by allanmoreira on 4/4/16.
  */
 public class PesquisaTest {
 

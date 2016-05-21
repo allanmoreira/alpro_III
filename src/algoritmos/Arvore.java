@@ -1,9 +1,6 @@
 package algoritmos;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Created by allanmoreira on 27/04/16.
@@ -13,7 +10,7 @@ public class Arvore {
     private Nodo raiz;
     private int contador;
 
-    private class Nodo {
+    public class Nodo {
         Nodo esquerdo;
         Nodo direito;
         int chave;
@@ -23,172 +20,134 @@ public class Arvore {
         }
     }
 
-
-    public void inserir(int chave) {
+    public void inserir(int chave){
         raiz = inserir0(raiz, chave);
     }
 
     private Nodo inserir0(Nodo nodo, int chave) {
-        if (nodo == null) {
+        if(nodo == null){
             contador++;
             return new Nodo(chave);
         }
-        if (chave > nodo.chave) {
-            nodo.direito = inserir0(nodo.direito, chave);
-        } else if (chave < nodo.chave) {
+
+        if(chave < nodo.chave)
             nodo.esquerdo = inserir0(nodo.esquerdo, chave);
-        } else {
-            throw new IllegalArgumentException("Esta chave já existe na árvore!");
-        }
+        else if (chave > nodo.chave)
+            nodo.direito = inserir0(nodo.direito, chave);
+
         return nodo;
     }
 
-    public boolean contem(int chave) {
+    public boolean contem(int chave){
         return contem0(raiz, chave);
     }
 
     private boolean contem0(Nodo nodo, int chave) {
-        if (nodo == null)
+        if(nodo == null)
             return false;
-        if (chave > nodo.chave)
-            return contem0(nodo.direito, chave);
-        else if (chave < nodo.chave)
+        if(chave < nodo.chave)
             return contem0(nodo.esquerdo, chave);
+        else if(chave > nodo.chave)
+            return contem0(nodo.direito, chave);
         return true;
     }
 
-    public int tamanho() {
+    public int tamanho(){
         return contador;
     }
 
-    public int altura() {
-        return altura0(raiz);
+    public String toString(){
+        return new ImprimeArvore().imprime(raiz);
     }
 
-    private int altura0(Nodo nodo) {
-        if (nodo == null)
+    private Nodo getNodo(int chave){
+        return getNodo0(raiz, chave);
+    }
+
+    private Nodo getNodo0(Nodo nodo, int chave) {
+        if(nodo == null)
+            throw new IllegalArgumentException("Chave inexistente!");
+        if(chave < nodo.chave)
+            return getNodo0(nodo.esquerdo, chave);
+        else if(chave > nodo.chave)
+            return getNodo0(nodo.direito, chave);
+        return nodo;
+    }
+
+    public int altura(){
+        return altura0(raiz, raiz.chave);
+    }
+
+    // O número de subárvores de um nó
+    public int altura(int chave){
+        return altura0(getNodo(chave), chave);
+    }
+
+    private int altura0(Nodo nodo, int chave) {
+        if(nodo == null)
             return -1;
-        int altDir = 1 + altura0(nodo.direito);
-        int altEsq = 1 + altura0(nodo.esquerdo);
-//        int maior = Math.max(altDir, altEsq);
-//        System.out.println("Altura do nodo " + nodo.chave + " é " + maior);
+        int altDir = 1 + altura0(nodo.direito, chave);
+        int altEsq = 1 + altura0(nodo.esquerdo, chave);
+
         return Math.max(altDir, altEsq);
     }
 
     public List<Integer> caminho(int chave){
-        List<Integer> resposta = new ArrayList<>();
-        return caminho0(raiz, chave, resposta);
-    }
-
-    private List<Integer> caminho0(Nodo nodo, int chave, List<Integer> resposta) {
-        if(nodo == null)
-            throw new IllegalArgumentException("Chave não encontrada!");
-        resposta.add(nodo.chave);
-        if(chave > nodo.chave)
-            return caminho0(nodo.direito, chave, resposta);
-        if(chave < nodo.chave)
-            return caminho0(nodo.esquerdo, chave, resposta);
+        ArrayList<Integer> resposta = new ArrayList<>();
+        caminho0(raiz, resposta, chave);
         return resposta;
     }
 
-    public List<Integer> folhas(){
-//      TODO implementar o método folhas
-        return null;
+    private void caminho0(Nodo nodo, ArrayList<Integer> resposta, int chave) {
+        if(nodo == null){
+            resposta.clear();
+            return;
+        }
+        if(chave < nodo.chave){
+            resposta.add(nodo.chave);
+            caminho0(nodo.esquerdo, resposta, chave);
+        }
+        else if(chave > nodo.chave){
+            resposta.add(nodo.chave);
+            caminho0(nodo.direito, resposta, chave);
+        }
     }
 
-    public int nivel(int chave){
-//      TODO implementar o método nivel
-        return 0;
+    public List<Integer> folhas() {
+        List<Integer> resposta = new ArrayList<>();
+        folhas0(raiz, resposta);
+        return resposta;
     }
 
-//    public String toString(){}
-
-    /*
-    * Métodos utilizados para impressão da árvore, utilizados no trabalho de 2015/2.
-    * Código completo em https://github.com/nolram/trabalho_alpro_III
-    * */
-    public String printTreeJB(){
-        return printTreeJB0(raiz);
-    }
-
-    private String printTreeJB0(Arvore.Nodo nodo) {
-        int contador = 15;
-        int pos;
-        int contASCII;
-        Stack<Arvore.Nodo> filaAtual = new Stack<>();
-        Stack<Arvore.Nodo> proximaFila = new Stack<>();
-        StringBuilder textTemp = new StringBuilder();
-        StringBuilder textFinal = new StringBuilder();
-        Arvore.Nodo node;
-        HashMap<Integer, Integer> hashPosition = fillPosition();
-        contador += hashPosition.size();
+    private void folhas0(Nodo nodo, List<Integer> resposta) {
         if(nodo != null){
-            filaAtual.push(nodo);
-        }
-        do{
-            contador += 9;
-            while (filaAtual.size() > 0){
-                contador += 13;
-                node = filaAtual.pop();
-                pos = hashPosition.get(node.chave);
-                if(node.esquerdo != null) {
-                    contador += 15;
-                    contASCII = hashPosition.get(node.esquerdo.chave);
-                    textTemp.append(stringBuilder(" ", contASCII - textTemp.length()));
-                    textTemp.append("|");
-                    textTemp.append(stringBuilder("-", pos - contASCII - 1));
-                    proximaFila.push(node.esquerdo);
-                } else {
-                    contador += 4;
-                    textTemp.append(stringBuilder(" ", pos - textTemp.length()));
-                }
-                textTemp.append(node.chave);
-                if(node.direito != null) {
-                    contador += 11;
-                    contASCII = hashPosition.get(node.direito.chave);
-                    textTemp.append(stringBuilder("-", contASCII - pos - 1));
-                    textTemp.append("|");
-                    proximaFila.push(node.direito);
-                }
+            if(nodo.esquerdo == null && nodo.direito == null){
+                resposta.add(nodo.chave);
+                return;
             }
-            //System.out.print(textTemp);
-            textFinal.append(textTemp);
-            textTemp = new StringBuilder();
-            textFinal.append("\n");
-            //System.out.println();
-            while (proximaFila.size() > 0){
-                contador += 4;
-                filaAtual.push(proximaFila.pop());
-            }
-        } while (filaAtual.size() > 0);
-        //System.out.println("Contador: "+Integer.toString(contador));
-        return textFinal.toString();
-        //return contador;
-    }
-
-    private HashMap<Integer, Integer> fillPosition(){
-        HashMap<Integer, Integer> hashMap = new HashMap<>();
-        fillPosition0(raiz, 1, hashMap);
-        return hashMap;
-    }
-
-    private int fillPosition0(Arvore.Nodo nodo, int cont, HashMap<Integer, Integer> hashMap){
-        if(nodo != null){
-            cont = fillPosition0(nodo.esquerdo, cont, hashMap);
-            String chave = Integer.toString(nodo.chave);
-            cont = cont + chave.length();
-            hashMap.put(nodo.chave, cont);
-            cont = fillPosition0(nodo.direito, cont, hashMap);
+            folhas0(nodo.esquerdo, resposta);
+            folhas0(nodo.direito, resposta);
         }
-        return cont;
     }
 
-    private String stringBuilder(String letter, int n){
-        StringBuilder texto = new StringBuilder();
-        for(int i=0; i < n; i++){
-            texto.append(letter);
+    public List<Integer> valoresNoNivel(int nivel){
+        ArrayList<Integer> resposta = new ArrayList<>();
+        int cont = 0;
+        valoresNoNivel0(raiz, nivel, cont, resposta);
+        return resposta;
+    }
+
+    private void valoresNoNivel0(Nodo nodo, int nivel, int cont, ArrayList<Integer> resposta) {
+        if(nodo == null){
+            return;
         }
-        return texto.toString();
-    }
 
+        if(cont == nivel){
+            resposta.add(nodo.chave);
+            cont--;
+        }
+        cont++;
+        valoresNoNivel0(nodo.esquerdo, nivel, cont, resposta);
+        valoresNoNivel0(nodo.direito, nivel, cont, resposta);
+    }
 }
