@@ -150,4 +150,27 @@ public class Arvore {
         valoresNoNivel0(nodo.esquerdo, nivel, cont, resposta);
         valoresNoNivel0(nodo.direito, nivel, cont, resposta);
     }
+
+    /**
+     * Caminhamento em largura, conhecido como Breadth First Traversal. Percorre a árvore imprimindo nível a nível
+     */
+    public String caminhamentoEmLagura(){
+        StringBuilder sb = new StringBuilder();
+        Queue<Nodo> fila = new LinkedList<>();
+        fila.add(raiz);
+        sb.append("[");
+//        while(fila.size() > 0){
+        while(!fila.isEmpty()){
+            Nodo n = fila.remove();
+
+            sb.append(n.chave).append(", ");
+            if(n.esquerdo != null)
+                fila.add(n.esquerdo);
+            if(n.direito != null)
+                fila.add(n.direito);
+        }
+        sb.delete(sb.length()-2, sb.length()-1);
+        sb.append("]");
+        return sb.toString();
+    }
 }
